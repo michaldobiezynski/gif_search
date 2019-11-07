@@ -43,7 +43,7 @@ export default class App extends Component {
         <div className="main-header">
           <div className="inner">
             <h1 className="main-title">GifSearch</h1>
-            <SearchForm />      
+            <SearchForm onSearch={this.performSearch}/>
           </div>   
         </div>    
         <div className="main-content">
