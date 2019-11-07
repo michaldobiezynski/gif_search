@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './App.css';
 import SearchForm from './Components/SearchForm';
 import GifList from './Components/GifList';
-import axios from 'axios';
 
 export default class App extends Component {
   
