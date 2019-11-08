@@ -13,18 +13,10 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-      fetch
-      ('http://api.giphy.com/v1/gifs/trending?api_key=JxdrbxzwdKM1QjPWfftipzRFIb51wAyg')
-          .then(response => response.json())
-          .then(responseData => {
-              this.setState({ gifs: responseData.data });
-          })
-          .catch(error => {
-              console.log('Error fetching and parsin data', error);
-          });
+      this.performSearch();
   }
 
-  performSearch = (query) => {
+  performSearch = (query= 'cats') => {
       fetch
       (`http://api.giphy.com/v1/gifs/search?q=${query}&limit=24&api_key=JxdrbxzwdKM1QjPWfftipzRFIb51wAyg`)
           .then(response => response.json())
