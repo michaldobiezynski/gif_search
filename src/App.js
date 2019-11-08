@@ -8,7 +8,8 @@ export default class App extends Component {
   constructor() {
     super();
     this.state = {
-        gifs: []
+        gifs: [],
+        loading: true,
     };
   }
 
@@ -17,11 +18,13 @@ export default class App extends Component {
   }
 
   performSearch = (query= 'cats') => {
-      fetch
-      (`http://api.giphy.com/v1/gifs/search?q=${query}&limit=24&api_key=JxdrbxzwdKM1QjPWfftipzRFIb51wAyg`)
+      fetch(`http://api.giphy.com/v1/gifs/search?q=${query}&limit=24&api_key=JxdrbxzwdKM1QjPWfftipzRFIb51wAyg`)
           .then(response => response.json())
           .then(responseData => {
-              this.setState({ gifs: responseData.data });
+              this.setState({
+                  gifs: responseData.data,
+                  loading: false,
+              });
           })
           .catch(error => {
               console.log('Error fetching and parsin data', error);
@@ -39,7 +42,11 @@ export default class App extends Component {
           </div>   
         </div>    
         <div className="main-content">
-          <GifList data={this.state.gifs}/>
+            {
+                (this.state.loading)
+                ? <p>Loading...</p>
+                : <GifList data={this.state.gifs}/>
+            }
         </div>
       </div>
     );
